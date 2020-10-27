@@ -30,7 +30,7 @@ class LitNeuralNet(pl.LightningModule):
         out = self.l1(x)
         out = self.relu(out)
         out = self.l2(out)
-        # no activation and no softmax at the end
+
         return out
 
     def training_step(self, batch, batch_idx):
@@ -92,19 +92,8 @@ class LitNeuralNet(pl.LightningModule):
 if __name__ == '__main__':
     model = LitNeuralNet(input_size, hidden_size, num_classes)
     
-    # gpus=8
-    # fast_dev_run=True -> runs single batch through training and validation
-    # train_percent_check=0.1 -> train only on 10% of data
+
     trainer = Trainer(max_epochs=num_epochs)
     trainer.fit(model)
           
-    # advanced features
-    # distributed_backend
-    # (DDP) implements data parallelism at the module level which can run across multiple machines.
-    # 16 bit precision
-    # log_gpu_memory
-    # TPU support
-    
-    # auto_lr_find: automatically finds a good learning rate before training
-    # deterministic: makes training reproducable
-    # gradient_clip_val: 0 default
+
